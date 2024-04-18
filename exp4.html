@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+    .a{
+      width: 80%;
+      padding: 20px;
+      margin: 50px auto;
+      text-align: start;
+    }
+    body{
+      background-image: url('https://st.depositphotos.com/1000152/2280/i/450/depositphotos_22804116-stock-photo-clouds-and-sun.jpg' );
+        background-size: cover;
+        background-repeat: no-repeat;
+        font-family: Arial, sans-serif;
+        height:100%;
+        display:flex;
+        justify-content: center;
+        color:rgb(16, 15, 15);
+    }
+    .form-label{
+      width:100%;
+      float:end;
+    }    
+  </style>
+</head>
+
+<boby >
+  <form id="myForm" target="_blank" action="page2.html" method="get">
+  <div class="a" >
+    <h3 style="margin:0px 60px" class="fs-2 fw-bold text-bg-dark  ">FORM VALIDATION</h3> <br>
+<div>
+    <label class="form-label">First Name:</label>
+    <input class="form-control float-end"type="text" id="fn" name="fn" placeholder="Enter your First Name" style="width:400px" required> 
+    <br>
+  </div>
+  <div>
+    <label class="form-label">Last Name:</label>
+    <input class="form-control" type="text" id="ln" name="ln" placeholder="Enter your Last Name" style="width:400px" required> 
+    <br>
+  </div>
+  <div>
+    <label class="form-label">Date of Birth:</label>
+    <input class="form-control" type="date" id="dob" name="dob" placeholder="Enter your dob" style="width:400px" required> 
+    <br>
+  </div>
+  <div>
+    <label class="form-label">Gender:</label>
+    <select class="form-select"id="g" name="g" style="width:400px;height:35px" required>
+      <option value="">Select Gender</option>
+      <option value="Male">Male</option>
+      <option value="Femala">Female</option>
+      <option value="Other">Other</option>
+    </select>
+    <br>
+  </div>
+  <div>
+    <label class="form-label">Age:</label>
+    <input class="form-control" type="number" id="age" name="age" placeholder="Enter your age" style="width:400px" required> 
+    <br>
+  </div>
+  <div>
+    <label class="form-label">Fathe Name:</label>
+    <input class="form-control" type="text" id="fan" name="fan" placeholder="Enter your Father Name" style="width:400px" required> 
+    <br>
+  </div>
+  <div>
+    <label class="form-label">Mother Name:</label>
+    <input class="form-control" type="text" id="mn" name="mn" placeholder="Enter your Mother Name" style="width:400px" required> 
+    <br>
+  </div>
+  <div>
+    <label class="form-label">Phone Number:</label>
+    <input class="form-control" type="number" id="phno" name="phno" placeholder="Enter your phone-no" style="width:400px" required> 
+    <br>
+  </div>
+  <div>
+    <label class="form-label">Email-ID:</label>
+    <input class="form-control"type="email" id="email" name="email" placeholder="Enter your email-id" style="width:400px" required> 
+    <br>
+  </div>
+  <div>
+    <label class="form-label">Password:</label>
+    <h6>Password must be alphanumeric and contain at least one uppercase letter, one lowercase letter, one digit, and one special character.</h6>
+    
+    <input class="form-control" type="password" id="password" value="" placeholder="Enter your password" style="width:400px" required> 
+    <br>
+  </div>
+  <button type="submit" data-bs-toggle="tooltip" data-bs-html="true" title="Thank you!" class="btn btn-primary"> Submit</button>
+  <button type="button" class="btn btn-danger" onclick="cancelForm()">Cancel</button>
+  </div>
+</form>
+<script>
+  document.getElementById('myForm').addEventListener('submit', function(event) {
+    event.preventDefault(); 
+    var formData = new FormData(this);
+    var data = {};
+    formData.forEach(function(value, key) {
+      data[key] = value;
+    });
+    console.log(data);
+    var password = document.getElementById('password').value;
+    var passwords = JSON.parse(localStorage.getItem('passwords')) || [];
+    var regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[a-zA-Z\d!@#$%^&*]{6,}$/;
+
+    if (!regex.test(password)) {
+      document.getElementById('error-msg').textContent = 'Password must be alphanumeric and contain at least one uppercase letter, one lowercase letter, one digit, and one special character.';
+    } else {
+      if (passwords.includes(password)) {
+        document.getElementById('error-msg').textContent = 'Password must be unique.';
+        event.preventDefault();
+      } else {
+        passwords.push(password);
+        localStorage.setItem('passwords', JSON.stringify(passwords));
+        this.submit();
+      }
+    }
+  });
+  document.getElementById('myForm').addEventListener('submit', function(event) {
+    event.preventDefault(); 
+    document.getElementById('successMessage').style.display = "SuccessMessage";
+  });
+
+  function cancelForm() {
+    document.getElementById("myForm").reset();
+    document.getElementById('error-msg').textContent = ''; 
+  }
+  var tooltipList1 = [].slice.call(document.querySelectorAll('[data-bs-toggle = "tooltip"]'))  
+var tooltipList2 = tooltipList1.map(function (tooltipTriggerfun) {  
+return new bootstrap.Tooltip(tooltipTriggerfun)  
+}) ;
+</script> 
+</boby>
+</html>

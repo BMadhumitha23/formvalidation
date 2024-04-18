@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Display Form Data</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <style>
+    body{
+        background-image: url('https://st.depositphotos.com/1000152/2280/i/450/depositphotos_22804116-stock-photo-clouds-and-sun.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        font-family: Arial, sans-serif;
+        height:100%;
+        display:flex;
+        justify-content: center;
+        color:black;
+        font-size: large;
+        font-style: italic ;
+        text-transform: uppercase;
+    }
+    h3{
+        text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h3 style="margin:0px 40px">Form Data</h3><br>
+    <p><strong>First Name:</strong> <span id="dispFn"></span></p><br>
+    <p><strong>Last Name:</strong> <span id="dispLn"></span></p><br>
+    <p><strong>Date of Birth:</strong> <span id="dispDob"></span></p><br>
+    <p><strong>Gender:</strong><span id="disg"></span></p><br>
+    <p><strong>Age:</strong><span id="disage"></span></p><br>
+    <p><strong>Fathe name:</strong><span id="disfan"></span></p><br>
+    <p><strong>Mother name:</strong><span id="dismn"></span></p><br>
+    <p><strong>Phone number:</strong><span id="disphno"></span></p><br>
+    <p><strong>Email id:</strong><span id="disemail"></span></p><br>
+  </div>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    document.getElementById("dispFn").innerText = urlParams.get("fn");
+    document.getElementById("dispLn").innerText = urlParams.get("ln");
+    document.getElementById("dispDob").innerText = urlParams.get("dob");
+    document.getElementById("disg").innerText = urlParams.get("g");
+    document.getElementById("disage").innerText = urlParams.get("age");
+    document.getElementById("disfan").innerText = urlParams.get("fan");
+    document.getElementById("dismn").innerText = urlParams.get("mn");
+    document.getElementById("disphno").innerText = urlParams.get("phno");
+    document.getElementById("disemail").innerText = urlParams.get("email");
+
+  </script>
+</body>
+</html>
